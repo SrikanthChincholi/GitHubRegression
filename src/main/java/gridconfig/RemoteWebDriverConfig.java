@@ -14,14 +14,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
-/***
-  * 
-  * 
-  * @params 
-  * @author DELL
-  * @methods : setDriver
-  *
-  */
+
+/**
+ * @author DELL
+ **/
 public class RemoteWebDriverConfig {
 
 	static ThreadLocal<RemoteWebDriver> d = new ThreadLocal<RemoteWebDriver>();
@@ -45,7 +41,7 @@ public class RemoteWebDriverConfig {
 			cap.setPlatform(Platform.ANY);
 			d.set(new RemoteWebDriver(new URL("http://localhost:4444"), cap));
 			d.get().manage().window().maximize();
-			
+
 		} else if (browser.equalsIgnoreCase("MicrosoftEdge")) {
 			Thread.sleep(3000);
 			cap = new DesiredCapabilities();
@@ -55,14 +51,13 @@ public class RemoteWebDriverConfig {
 			d.get().manage().window().maximize();
 
 		}
-		
-		
+
 	}
 
 	@AfterMethod
 	public static void closeBrowser() {
 		d.get().quit();
-		//d.remove();
+		// d.remove();
 	}
 
 	public static ThreadLocal<RemoteWebDriver> getDriver() {
